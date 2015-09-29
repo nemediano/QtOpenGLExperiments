@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/OpenGLWindow">
+        <file>Resources/fragmentShader.glsl</file>
+        <file>Resources/vertexShader.glsl</file>
+    </qresource>
+</RCC>
