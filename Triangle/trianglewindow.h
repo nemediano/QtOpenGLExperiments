@@ -21,9 +21,9 @@ public:
 	
 protected:
 	/* Override this methods form QWindow to implement the user interaction */
-	//virtual void mousePressEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
-	//virtual void mouseReleaseEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
-	//virtual void mouseMoveEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
+	virtual void mousePressEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
+	virtual void mouseReleaseEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
+	virtual void mouseMoveEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
 	//virtual void keyPressEvent(QKeyEvent* event) Q_DECL_OVERRIDE;
 	
 	//virtual void wheelEvent(QWheelEvent* event) Q_DECL_OVERRIDE;
@@ -37,6 +37,7 @@ private:
 
 	QOpenGLShaderProgram* m_program;
 	int m_frame;
+	bool m_mouse_draging;
 };
 
 #endif // TRIANGLEWINDOW_H

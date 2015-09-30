@@ -16,4 +16,6 @@ and try to include only what I need and have all at once*/
 #include <QtGui/QOpenGLPaintDevice>
 #include <QtGui/QPainter>
 
+#include <QtGui/QMouseEvent>
+
 #include <QtCore/QtMath>

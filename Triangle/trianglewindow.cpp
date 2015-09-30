@@ -4,7 +4,7 @@
 
 TriangleWindow::TriangleWindow() :
 m_program(nullptr),
-m_frame(0)
+m_frame(0), m_mouse_draging(false)
 {
 }
 
@@ -29,6 +29,7 @@ void TriangleWindow::initialize() {
 	m_matrixUniform = m_program->uniformLocation("matrix");
 
 	m_fovy_y = 60.0f;
+	
 }
 
 void TriangleWindow::render() {
@@ -91,3 +92,20 @@ void TriangleWindow::render() {
 	++m_frame;
 }
 
+void TriangleWindow::mouseMoveEvent(QMouseEvent* event) {
+	if (m_mouse_draging) {
+		qDebug() << "Drag: (" << event->pos().x() << ","
+			<< event->pos().y() << ")";
+	}
+}
+
+void TriangleWindow::mousePressEvent(QMouseEvent* event) {
+	if (!m_mouse_draging) {
+		qDebug() << "Click!";
+	}
+	m_mouse_draging = true;
+}
+
+void TriangleWindow::mouseReleaseEvent(QMouseEvent* event) {
+	m_mouse_draging = false;
+}
