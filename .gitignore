@@ -52,3 +52,5 @@ Triangle/GeneratedFiles/qrc_openglwindow.cpp
 *.pdb
 *.ilk
 *.exe
+*.opensdf
+*.ipch
