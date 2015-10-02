@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 	TriangleWindow window;
 	window.setTitle("Hello world OpenGL triangle");
 	window.setFormat(format);
-	window.resize(640, 480);
+	window.resize(512, 512);
 	window.show();
 	window.setAnimating(true);
 

@@ -9,6 +9,10 @@ and try to include only what I need and have all at once*/
 
 #include <QtGui/QScreen>
 #include <QtGui/QMatrix4x4>
+#include <QtGui/QMatrix3x3>
+#include <QtGui/QVector3D>
+#include <QtGui/QVector2D>
+#include <QtGui/QQuaternion>
 
 #include <QtGui/QOpenGLFunctions>
 #include <QtGui/QOpenGLShaderProgram>
@@ -19,3 +23,4 @@ and try to include only what I need and have all at once*/
 #include <QtGui/QMouseEvent>
 
 #include <QtCore/QtMath>
+#include <cmath>
