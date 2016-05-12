@@ -10,8 +10,7 @@ m_frame(0), m_mouse_draging(false)
 
 
 void TriangleWindow::initialize() {
-	//glEnable(GL_DEPTH_TEST);
-
+	
 	m_program = new QOpenGLShaderProgram(this);
 	if (!m_program->addShaderFromSourceFile(QOpenGLShader::Vertex, ":/OpenGLWindow/Resources/vertexShader.glsl")) {
 		qDebug() << "Could not compile vertex shader!!";
@@ -32,6 +31,7 @@ void TriangleWindow::initialize() {
 
 	m_fovy_y = 51.42f;
 	create_primitive();
+
 	glClearColor(0.15f, 0.15f, 0.15f, 1.0f);
 
 	//Camera control
@@ -43,10 +43,10 @@ void TriangleWindow::render() {
 	glViewport(0, 0, width() * retinaScale, height() * retinaScale);
 	m_aspect_ratio = (width() * retinaScale) / (height() * retinaScale);
 
-	glClear(GL_COLOR_BUFFER_BIT);
-
+	glEnable(GL_DEPTH_TEST); //This call needs to be here is reseted every frame (I don't now why)
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	
 	m_program->bind();
-
 
 	QMatrix4x4 matrix;
 	//Projection
@@ -61,8 +61,10 @@ void TriangleWindow::render() {
 	//Model
 	//Calculate the trackball rotation
 	matrix.rotate((m_new_rotation * m_base_rotation));
-	//matrix.rotate(100.0f * m_frame / screen()->refreshRate(), 0, 1, 0);
-
+	matrix.rotate(100.0f * m_frame / screen()->refreshRate(), 0, 1, 0);
+	matrix.rotate(45.0f, QVector3D(1.0, 0.0, 0.0));
+	matrix.rotate(-45.0f, QVector3D(0.0, 1.0, 0.0));
+	matrix.scale(0.5);
 
 	m_program->setUniformValue(m_matrixUniform, matrix);
 
@@ -148,26 +150,38 @@ void TriangleWindow::wheelEvent(QWheelEvent* event) {
 
 void TriangleWindow::create_primitive() {
 	
-	m_nVertex = 4;
-	m_nIndices = 12;
+	m_nVertex = 8;
+	m_nIndices = 36;
 	
 	//Regular tetrahedral inscribed in unit circle
 	Vertex points[] = {
-		{ { 0.0f, 0.0f, 1.0f }, { 1.0f, 1.0f, 0.0f } },
-		{ { 0.0f, (2.0f / 3.0f) * sqrt(2.0f), -1.0f / 3.0f }, { 1.0f, 0.0f, 0.0f } },
-		{ { -sqrt(2.0f / 3.0f), -sqrt(2.0f) / 3.0f, -1.0f / 3.0f }, { 0.0f, 0.0f, 1.0f } },
-		{ { sqrt(2.0f / 3.0f), -sqrt(2.0f) / 3.0f, -1.0f / 3.0f }, { 0.0f, 1.0f, 0.0f } },
+		{ { -1.0f, -1.0f,  1.0f }, { 0.0f, 0.0f, 1.0f } },
+		{ {  1.0f, -1.0f,  1.0f }, { 1.0f, 0.0f, 1.0f } },
+		{ {  1.0f,  1.0f,  1.0f }, { 1.0f, 1.0f, 1.0f } },
+		{ { -1.0f,  1.0f,  1.0f }, { 0.0f, 1.0f, 1.0f } },
+		{ { -1.0f, -1.0f, -1.0f }, { 0.0f, 0.0f, 0.0f } },
+		{ {  1.0f, -1.0f, -1.0f }, { 1.0f, 0.0f, 0.0f } },
+		{ {  1.0f,  1.0f, -1.0f }, { 1.0f, 1.0f, 0.0f } },
+		{ { -1.0f,  1.0f, -1.0f }, { 0.0f, 1.0f, 0.0f } },
 	};
 
 	//Create four triangles using the point indexes
 	unsigned short indices[] = {
-		1, 2, 3,
-		0, 1, 3,
 		0, 1, 2,
-		0, 3, 2,
+		0, 2, 3,
+		1, 5, 6,
+		1, 6, 2,
+		5, 4, 6,
+		4, 6, 7,
+		4, 0, 3,
+		4, 3, 7,
+		3, 2, 6,
+		3, 6, 7,
+		4, 5, 1,
+		4, 1, 0,
 	};
 
-	m_nTriangles = 4;
+	m_nTriangles = 12;
 
 	//Create the buffers
 	glGenBuffers(1, &m_vbo);

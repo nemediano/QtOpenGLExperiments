@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 	format.setSamples(16);
 
 	TriangleWindow window;
-	window.setTitle("Hello world OpenGL triangle");
+	window.setTitle("OpenGL trackball cube");
 	window.setFormat(format);
 	window.resize(512, 512);
 	window.show();
