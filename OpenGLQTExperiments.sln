@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleWindow", "SimpleWindo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TriangleV2", "TriangleV2\TriangleV2.vcxproj", "{0AE63352-ADC5-4F87-92AD-A4FB4035E35A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RenderingA", "RenderingA\RenderingA.vcxproj", "{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -41,6 +43,14 @@ Global
 		{0AE63352-ADC5-4F87-92AD-A4FB4035E35A}.Release|Win32.Build.0 = Release|Win32
 		{0AE63352-ADC5-4F87-92AD-A4FB4035E35A}.Release|x64.ActiveCfg = Release|x64
 		{0AE63352-ADC5-4F87-92AD-A4FB4035E35A}.Release|x64.Build.0 = Release|x64
+		{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}.Debug|Win32.Build.0 = Debug|Win32
+		{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}.Debug|x64.ActiveCfg = Debug|x64
+		{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}.Debug|x64.Build.0 = Debug|x64
+		{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}.Release|Win32.ActiveCfg = Release|Win32
+		{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}.Release|Win32.Build.0 = Release|Win32
+		{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}.Release|x64.ActiveCfg = Release|x64
+		{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
