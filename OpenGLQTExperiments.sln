@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TriangleV2", "TriangleV2\Tr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RenderingA", "RenderingA\RenderingA.vcxproj", "{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleCamera", "SimpleCamera\SimpleCamera.vcxproj", "{85E1E461-C6A4-4845-A611-C6D6C485932B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -51,6 +53,14 @@ Global
 		{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}.Release|Win32.Build.0 = Release|Win32
 		{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}.Release|x64.ActiveCfg = Release|x64
 		{F2965737-9BA7-42FA-AB0B-B1236B8D8E4F}.Release|x64.Build.0 = Release|x64
+		{85E1E461-C6A4-4845-A611-C6D6C485932B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{85E1E461-C6A4-4845-A611-C6D6C485932B}.Debug|Win32.Build.0 = Debug|Win32
+		{85E1E461-C6A4-4845-A611-C6D6C485932B}.Debug|x64.ActiveCfg = Debug|x64
+		{85E1E461-C6A4-4845-A611-C6D6C485932B}.Debug|x64.Build.0 = Debug|x64
+		{85E1E461-C6A4-4845-A611-C6D6C485932B}.Release|Win32.ActiveCfg = Release|Win32
+		{85E1E461-C6A4-4845-A611-C6D6C485932B}.Release|Win32.Build.0 = Release|Win32
+		{85E1E461-C6A4-4845-A611-C6D6C485932B}.Release|x64.ActiveCfg = Release|x64
+		{85E1E461-C6A4-4845-A611-C6D6C485932B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
