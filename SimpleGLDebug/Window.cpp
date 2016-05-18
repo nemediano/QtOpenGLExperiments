@@ -301,59 +301,102 @@ void Window::wheelEvent(QWheelEvent* event) {
 
 void Window::messageLogged(const QOpenGLDebugMessage &msg)
 {
-	QString error;
+	QString error = "Severity:";
 
 	// Format based on severity
-	switch (msg.severity())
-	{
+	switch (msg.severity())	{
 	case QOpenGLDebugMessage::NotificationSeverity:
-		error += "--";
+		error += "Notification";
 		break;
 	case QOpenGLDebugMessage::HighSeverity:
-		error += "!!";
+		error += "High";
 		break;
 	case QOpenGLDebugMessage::MediumSeverity:
-		error += "!~";
+		error += "Medium";
 		break;
 	case QOpenGLDebugMessage::LowSeverity:
-		error += "~~";
+		error += "Low";
 		break;
 	}
 
-	error += " (";
+	error += " Source:";
 
 	// Format based on source
-#define CASE(c) case QOpenGLDebugMessage::c: error += #c; break
-	switch (msg.source())
-	{
-		CASE(APISource);
-		CASE(WindowSystemSource);
-		CASE(ShaderCompilerSource);
-		CASE(ThirdPartySource);
-		CASE(ApplicationSource);
-		CASE(OtherSource);
-		CASE(InvalidSource);
-	}
-#undef CASE
 
-	error += " : ";
+	switch (msg.source()) {
+		
+		case QOpenGLDebugMessage::APISource:
+			error += "API";
+		break;
+
+		case QOpenGLDebugMessage::WindowSystemSource:
+			error += "Window system";
+		break;
+
+		case QOpenGLDebugMessage::ShaderCompilerSource:
+			error += "Shader compiler";
+		break;
+		
+		case QOpenGLDebugMessage::ThirdPartySource:
+			error += "Third party";
+		break;
+
+		case QOpenGLDebugMessage::ApplicationSource:
+			error += "Application";
+		break;
+		
+		case QOpenGLDebugMessage::OtherSource:
+			error += "Other";
+		break;
+
+		case QOpenGLDebugMessage::InvalidSource:
+			error += "Invalid source";
+		break;
+	}
+
+	error += " : Type:";
 
 	// Format based on type
-#define CASE(c) case QOpenGLDebugMessage::c: error += #c; break
-	switch (msg.type())
-	{
-		CASE(ErrorType);
-		CASE(DeprecatedBehaviorType);
-		CASE(UndefinedBehaviorType);
-		CASE(PortabilityType);
-		CASE(PerformanceType);
-		CASE(OtherType);
-		CASE(MarkerType);
-		CASE(GroupPushType);
-		CASE(GroupPopType);
-	}
-#undef CASE
+	switch (msg.type()) {
+		case QOpenGLDebugMessage::ErrorType:
+			error += "Error";
+		break;
 
-	error += ")";
-	qDebug() << qPrintable(error) << "\n" << qPrintable(msg.message()) << "\n";
+		case QOpenGLDebugMessage::DeprecatedBehaviorType:
+			error += "Deprecated behavior";
+		break;
+
+		case QOpenGLDebugMessage::UndefinedBehaviorType:
+			error += "Undefinded behavior";
+		break;
+		
+		case QOpenGLDebugMessage::PortabilityType:
+			error += "Portabillity";
+		break;
+		
+		case QOpenGLDebugMessage::PerformanceType:
+			error += "Performance";
+		break;
+		
+		case QOpenGLDebugMessage::OtherType:
+			error += "Other";
+		break;
+
+		case QOpenGLDebugMessage::MarkerType:
+			error += "Marker";
+		break;
+
+		case QOpenGLDebugMessage::GroupPushType:
+			error += "Group push";
+		break;
+
+		case QOpenGLDebugMessage::GroupPopType:
+			error += "Group pop";
+		break;
+	}
+
+	error += " type";
+
+	qDebug().noquote() << error;
+	qDebug().noquote() << msg.message();
 }
