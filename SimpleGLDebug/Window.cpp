@@ -3,6 +3,8 @@
 #include <QWheelEvent>
 #include <QMouseEvent>
 #include <QtMath>
+#include <QOpenGLDebugMessage>
+#include <QOpenGLDebugLogger>
 
 #include "Vertex.h"
 #include "Window.h"
@@ -44,6 +46,10 @@ void Window::createGeomerty() {
 	m_indexes.push_back(7); m_indexes.push_back(4); m_indexes.push_back(0);
 }
 
+Window::Window() : m_debugLogger_ptr(Q_NULLPTR) {
+
+}
+
 
 Window::~Window() {
 	makeCurrent();
@@ -54,7 +60,7 @@ void Window::update() {
 	// Schedule a redraw to continue this cycle
 	QOpenGLWindow::update();
 }
-
+#define GL_DEBUG 1
 void Window::initializeGL() {
 	// Initialize OpenGL Backend
 	initializeOpenGLFunctions();
@@ -62,6 +68,17 @@ void Window::initializeGL() {
 	//We don't control the frame rate is as fast as the system is available
 	//Maybe using the vsync
 	connect(this, SIGNAL(frameSwapped()), this, SLOT(update()));
+
+#ifdef GL_DEBUG
+	m_debugLogger_ptr = new QOpenGLDebugLogger(this);
+	if (m_debugLogger_ptr->initialize())
+	{
+		qDebug() << "GL_DEBUG Debug Logger" << m_debugLogger_ptr << "\n";
+		connect(m_debugLogger_ptr, SIGNAL(messageLogged(QOpenGLDebugMessage)), this, SLOT(messageLogged(QOpenGLDebugMessage)));
+		m_debugLogger_ptr->startLogging();
+	}
+#endif // GL_DEBUG
+
 	printVersionInformation();
 	
 	//Global GL configurations
@@ -280,4 +297,63 @@ void Window::wheelEvent(QWheelEvent* event) {
 	m_projection.perspective(m_fovy_y, width() / float(height()), 0.0f, 1000.0f);
 
 	event->accept();
+}
+
+void Window::messageLogged(const QOpenGLDebugMessage &msg)
+{
+	QString error;
+
+	// Format based on severity
+	switch (msg.severity())
+	{
+	case QOpenGLDebugMessage::NotificationSeverity:
+		error += "--";
+		break;
+	case QOpenGLDebugMessage::HighSeverity:
+		error += "!!";
+		break;
+	case QOpenGLDebugMessage::MediumSeverity:
+		error += "!~";
+		break;
+	case QOpenGLDebugMessage::LowSeverity:
+		error += "~~";
+		break;
+	}
+
+	error += " (";
+
+	// Format based on source
+#define CASE(c) case QOpenGLDebugMessage::c: error += #c; break
+	switch (msg.source())
+	{
+		CASE(APISource);
+		CASE(WindowSystemSource);
+		CASE(ShaderCompilerSource);
+		CASE(ThirdPartySource);
+		CASE(ApplicationSource);
+		CASE(OtherSource);
+		CASE(InvalidSource);
+	}
+#undef CASE
+
+	error += " : ";
+
+	// Format based on type
+#define CASE(c) case QOpenGLDebugMessage::c: error += #c; break
+	switch (msg.type())
+	{
+		CASE(ErrorType);
+		CASE(DeprecatedBehaviorType);
+		CASE(UndefinedBehaviorType);
+		CASE(PortabilityType);
+		CASE(PerformanceType);
+		CASE(OtherType);
+		CASE(MarkerType);
+		CASE(GroupPushType);
+		CASE(GroupPopType);
+	}
+#undef CASE
+
+	error += ")";
+	qDebug() << qPrintable(error) << "\n" << qPrintable(msg.message()) << "\n";
 }

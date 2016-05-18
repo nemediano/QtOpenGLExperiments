@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RenderingA", "RenderingA\Re
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleCamera", "SimpleCamera\SimpleCamera.vcxproj", "{85E1E461-C6A4-4845-A611-C6D6C485932B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleGLDebug", "SimpleGLDebug\SimpleGLDebug.vcxproj", "{FB71F118-3B8B-43BC-8D3E-4855D497266E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -61,6 +63,14 @@ Global
 		{85E1E461-C6A4-4845-A611-C6D6C485932B}.Release|Win32.Build.0 = Release|Win32
 		{85E1E461-C6A4-4845-A611-C6D6C485932B}.Release|x64.ActiveCfg = Release|x64
 		{85E1E461-C6A4-4845-A611-C6D6C485932B}.Release|x64.Build.0 = Release|x64
+		{FB71F118-3B8B-43BC-8D3E-4855D497266E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FB71F118-3B8B-43BC-8D3E-4855D497266E}.Debug|Win32.Build.0 = Debug|Win32
+		{FB71F118-3B8B-43BC-8D3E-4855D497266E}.Debug|x64.ActiveCfg = Debug|x64
+		{FB71F118-3B8B-43BC-8D3E-4855D497266E}.Debug|x64.Build.0 = Debug|x64
+		{FB71F118-3B8B-43BC-8D3E-4855D497266E}.Release|Win32.ActiveCfg = Release|Win32
+		{FB71F118-3B8B-43BC-8D3E-4855D497266E}.Release|Win32.Build.0 = Release|Win32
+		{FB71F118-3B8B-43BC-8D3E-4855D497266E}.Release|x64.ActiveCfg = Release|x64
+		{FB71F118-3B8B-43BC-8D3E-4855D497266E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
